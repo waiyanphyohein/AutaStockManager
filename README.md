@@ -1,12 +1,33 @@
-# AutaStockManager
-CTP Fall Team Project Repo.
+Express Tutorial : Describe Project Here
+=======
 
-    Current Goal: Demo Completition. 
-    Features: Online Web Server Stock automatic selling and buying as profitable as possible. Realtime update scanning for newly stock price 
-              changes. In future, plan to get internal connection with Wall Street or related to have more reliable data to be proceeded.
-              
-    Schedule: First Week(09/29/17 - 10/06/17) :  -Find finance API from Google server and TD stock service API and learn more about its usage.
-                                                 -Design the architecture of the Web program and its system to be more secure and efficient with
-                                                  its tasks.
-                                                  
-              Second Week(10/06/17 - 10/13/17) : (Coming Soon)
+Sub-heading
+-----------
+
+### Another deeper heading
+
+Markdown is plain text formatting designed to convert
+to HTML
+
+Paragraphs are separated
+by a blank line.
+
+Leave 2 spaces at the end of a line to do a
+line break
+
+Text attributes *italic*, **bold**,
+`monospace`, ~~strikethrough~~ .
+
+A [link](http://example.com).
+
+Unordered list:
+
+  * apples
+  * oranges
+  * pears
+
+Numbered list:
+
+  1. apples
+  2. oranges
+  3. pears
