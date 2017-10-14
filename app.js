@@ -1,18 +1,69 @@
-var express = require("express");
+const express = require('express');
+const expressSession = require('express-session');
+const passport = require('./middlewares/authentication');
 
-var app = express();
-var path = require("path");
+const PORT = process.env.PORT || 8000;
 
-app.disable('x-powered-by');
-app.set('port', process.env.PORT || 3230);
+const app = express();
 
-app.get('/',function(req,res){
-    res.send('Express Works');
-}
-);
+// Access Body Data
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+// Enable sessions & passport
+app.use(expressSession(({ secret: 'keyboard cat', resave: false, saveUninitialized: true })));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.listen(app.get('port'),function()
-{
-    console.log('Express started press Ctrl-C to terminate.')
+// Load Views
+const handlebars = require('express-handlebars');
+app.engine('handlebars', handlebars({
+  layoutsDir: './views/layouts',
+  defaultLayout: 'main',
+}));
+app.set('view engine', 'handlebars');
+app.set('views', `${__dirname}/views/`);
+
+// Load Controller
+const controllers = require('./controllers');
+app.use(controllers);
+
+// Load Models
+const models = require('./models');
+models.sequelize.sync({force: false})
+  .then(() => {
+    app.listen(PORT);
+  });
+
+app.use(function(err, req, res, next){
+  console.log('Error : ' + err.message);
+  next();
 });
+
+app.get('/about', function(req, res){
+  res.render('about');
+});
+
+app.get('/contact', function(req, res){
+  res.render('contact', { csrf: 'CSRF token here'});
+});
+
+app.get('/thankyou', function(req, res){
+  res.render('thankyou');
+});
+
+app.use(function(req, res){
+  res.type('text/html');
+  res.status(404);
+  res.render('404');
+});
+
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.status(500);
+  res.render('500');
+});
+
+
+
