@@ -46,8 +46,6 @@ app.use(passport.session());
 
 var formidable = require('formidable');
 
-var credentials = require('./credentials.js');
-app.use(require('cookie-parser')(credentials.cookieSecret));
 
 app.set('port', process.env.PORT || 3000);
 
@@ -129,12 +127,6 @@ app.get('/deletecookie', function(req, res){
 var session = require('express-session');
 
 var parseurl = require('parseurl');
-
-app.use(session({
-  resave: false,
-  saveUninitialized: true,
-  secret: credentials.cookieSecret,
-}));
 
 app.use(function(req, res, next){
   var views = req.session.views;
