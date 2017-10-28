@@ -3,7 +3,7 @@ const models = require('../models');
 const Users = models.Users;
 
 router.get('/', (req, res) => {
-  res.render('signup')
+  res.render('signup');
 });
 
 router.post('/', (req, res) => {

@@ -2,11 +2,13 @@ var express = require('express');
 const expressSession = require('express-session');
 const passport = require('./middlewares/authentication');
 var app = express();
+app.set('port', process.env.PORT || 3000);
 
+//Encrypt URL
 app.disable('x-powered-by');
 
+//Load Views
 const handlebars = require('express-handlebars');
-
 app.engine('handlebars',handlebars({
   layoutsDir: './views/layouts',
   defaultLayout: 'main',
@@ -14,6 +16,8 @@ app.engine('handlebars',handlebars({
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/views/`);
 
+
+//Load Controllers
 const controllers = require('./controllers');
 app.use(controllers);
 
@@ -32,21 +36,20 @@ app.get('/login',function(req,res)
   res.render('login/index');
 });
 
+//ACCESS BODY DATA
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/profile',function(req,res){
-  res.render('profile/index');
-})
-app.use(require('body-parser').urlencoded({extended: true}));
-
-
+//Enable sessions & passport
 app.use(expressSession(({secret: 'SomeName',resave: false,saveUninitialized: true})));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 var formidable = require('formidable');
 
 
-app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -89,12 +92,12 @@ app.post('/process', function(req,res){
   res.redirect(303, '/thankyou');
 });
 
-app.get('/file-upload', function(req, res){
-  var now = new Date();
-  res.render('file-upload',{
-    year: now.getFullYear(),
-    month: now.getMonth() });
-  });
+// app.get('/file-upload', function(req, res){
+//   var now = new Date();
+//   res.render('file-upload',{
+//     year: now.getFullYear(),
+//     month: now.getMonth() });
+//   });
 
 app.post('/file-upload/:year/:month',
   function(req, res){
@@ -109,23 +112,23 @@ app.post('/file-upload/:year/:month',
   });
 });
 
-app.get('/cookie', function(req, res){
-  res.cookie('username', 'Derek Banas', {expire: new Date() + 9999}).send('username has the value of Derek Banas');
-});
+// app.get('/cookie', function(req, res){
+//   res.cookie('username', 'Derek Banas', {expire: new Date() + 9999}).send('username has the value of Derek Banas');
+// });
 
-app.get('/listcookies', function(req, res){
-  console.log("Cookies : ", req.cookies);
-  res.send('Look in the console for cookies');
-});
+// app.get('/listcookies', function(req, res){
+//   console.log("Cookies : ", req.cookies);
+//   res.send('Look in the console for cookies');
+// });
 
-app.get('/deletecookie', function(req, res){
-  res.clearCookie('username');
-  res.send('username Cookie Deleted');
-});
+// app.get('/deletecookie', function(req, res){
+//   res.clearCookie('username');
+//   res.send('username Cookie Deleted');
+// });
 
-var session = require('express-session');
+// var session = require('express-session');
 
-var parseurl = require('parseurl');
+// var parseurl = require('parseurl');
 
 // app.use(function(req, res, next){
 //   var views = req.session.views;
@@ -142,37 +145,37 @@ var parseurl = require('parseurl');
 
 // });
 
-app.get('/viewcount', function(req, res, next){
-  res.send('You viewed this page ' + req.session.views['/viewcount'] + ' times');
-});
+// app.get('/viewcount', function(req, res, next){
+//   res.send('You viewed this page ' + req.session.views['/viewcount'] + ' times');
+// });
 
-var fs = require("fs");
+// var fs = require("fs");
 
-app.get('/readfile', function(req, res, next){
-  fs.readFile('./public/randomfile.txt', function(err, data){
-      if(err){
-        return console.error(err);
-      }
-      res.send("the File : " + data.toString());
-  });
-});
+// app.get('/readfile', function(req, res, next){
+//   fs.readFile('./public/randomfile.txt', function(err, data){
+//       if(err){
+//         return console.error(err);
+//       }
+//       res.send("the File : " + data.toString());
+//   });
+// });
 
-app.get('/writefile', function(req, res, next){
-  fs.writeFile('./public/randomfile2.txt',
-    'More random text', function(err){
-      if(err){
-        return console.error(err);
-      }
-    });
+// app.get('/writefile', function(req, res, next){
+//   fs.writeFile('./public/randomfile2.txt',
+//     'More random text', function(err){
+//       if(err){
+//         return console.error(err);
+//       }
+//     });
 
-  fs.readFile('./public/randomfile2.txt', function(err, data){
-    if(err){
-      return console.error(err);
-    }
-    res.send("The File " + data.toString());
-  });
+//   fs.readFile('./public/randomfile2.txt', function(err, data){
+//     if(err){
+//       return console.error(err);
+//     }
+//     res.send("The File " + data.toString());
+//   });
 
-});
+// });
 
 app.use(function(req, res){
   res.type('text/html');
