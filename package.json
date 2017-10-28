@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Express Tutorial",
-  "main": "expresstut.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon -L --inspect app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

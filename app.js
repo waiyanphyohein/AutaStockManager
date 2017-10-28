@@ -5,9 +5,12 @@ var app = express();
 
 app.disable('x-powered-by');
 
-const handlebars = require('express-handlebars').create({defaultLayout:'main'});
+const handlebars = require('express-handlebars');
 
-app.engine('handlebars',handlebars.engine);
+app.engine('handlebars',handlebars({
+  layoutsDir: './views/layouts',
+  defaultLayout: 'main',
+}));
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/views/`);
 
@@ -21,7 +24,7 @@ app.get('/controllers',function(req,res){
 const models = require('./models');
 models.sequelize.sync({force: false})
 .then(() => {
-  app.listen(3002);
+  app.listen(3000);
 });
 
 app.get('/login',function(req,res)
@@ -35,10 +38,6 @@ app.get('/profile',function(req,res){
 })
 app.use(require('body-parser').urlencoded({extended: true}));
 
-app.get('/signup',function(req,res){
-  res.render('signup/index');
-  res.redirect("Successfully Created.");
-})
 
 app.use(expressSession(({secret: 'SomeName',resave: false,saveUninitialized: true})));
 app.use(passport.initialize());
@@ -128,20 +127,20 @@ var session = require('express-session');
 
 var parseurl = require('parseurl');
 
-app.use(function(req, res, next){
-  var views = req.session.views;
+// app.use(function(req, res, next){
+//   var views = req.session.views;
 
-  if(!views){
-    views = req.session.views = {};
-  }
+//   if(!views){
+//     views = req.session.views = {};
+//   }
 
-  var pathname = parseurl(req).pathname;
+//   var pathname = parseurl(req).pathname;
 
-  views[pathname] = (views[pathname] || 0) + 1;
+//   views[pathname] = (views[pathname] || 0) + 1;
 
-  next();
+//   next();
 
-});
+// });
 
 app.get('/viewcount', function(req, res, next){
   res.send('You viewed this page ' + req.session.views['/viewcount'] + ' times');
