@@ -16,26 +16,6 @@ app.engine('handlebars',handlebars({
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/views/`);
 
-
-//Load Controllers
-const controllers = require('./controllers');
-app.use(controllers);
-
-app.get('/controllers',function(req,res){
-  var string = encodeURIComponent('something went wrong.');
-  res.render(index);
-})
-const models = require('./models');
-models.sequelize.sync({force: false})
-.then(() => {
-  app.listen(3000);
-});
-
-app.get('/login',function(req,res)
-{
-  res.render('login/index');
-});
-
 //ACCESS BODY DATA
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -52,6 +32,22 @@ var formidable = require('formidable');
 
 
 app.use(express.static(__dirname + '/public'));
+
+//Load Controllers
+const controllers = require('./controllers');
+app.use(controllers);
+
+app.get('/controllers',function(req,res){
+  var string = encodeURIComponent('something went wrong.');
+  res.render(index);
+})
+const models = require('./models');
+
+app.get('/login',function(req,res)
+{
+  res.render('login/index');
+});
+
 
 app.get('/', function(req, res){
   res.render('home');
@@ -190,8 +186,12 @@ app.use(function(err, req, res, next){
 });
 
 
-app.listen(app.get('port'), function(){
-  console.log('Express started on http://localhost:' + app.get('port') + ' press Ctrl-C to terminate');
+// app.listen(app.get('port'), function(){
+//   console.log('Express started on http://localhost:' + app.get('port') + ' press Ctrl-C to terminate');
+// });
+models.sequelize.sync({force: true})
+.then(() => {
+  app.listen(3000);
 });
 
 

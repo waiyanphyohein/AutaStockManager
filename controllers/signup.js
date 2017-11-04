@@ -7,9 +7,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log(req.body);
   Users.create({
-    firstName: req.body.firstName,
     lastName: req.body.lastName,
+    firstName: req.body.firstName,
     email: req.body.email,
     password: req.body.password,
   }).then((user) => {
@@ -22,3 +23,4 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
+
