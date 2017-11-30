@@ -1,3 +1,4 @@
+
 {{!-- <div class="container">
   <form action="/signup" method="post">
     <div class="form-group">
@@ -20,24 +21,17 @@
   </form>
 </div> --}}
 <style>
-/*
-/* Created by Filipe Pina
- * Specific styles of signin, register, component
- */
-/*
- * General styles
- */
 #playground-container {
     height: 500px;
     overflow: hidden !important;
     -webkit-overflow-scrolling: touch;
 }
 body, html{
-     height: 100%;
+    height: 100%;
  	background-repeat: no-repeat;
- 	background:url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg);
+ 	background:url('../img/work.jpg');
  	font-family: 'Oxygen', sans-serif;
-	    background-size: cover;
+	background-size: 1500px;
 }
 
 .main{
@@ -56,7 +50,9 @@ hr{
 }
 
 .form-group{
-	margin-bottom: 15px;
+	margin-bottom: 20px;
+	width: 100%;
+
 }
 
 label{
@@ -82,7 +78,9 @@ input::-webkit-input-placeholder {
 }
 .form-control {
     height: auto!important;
-padding: 8px 12px !important;
+
+	padding: 8px 50px !important;
+	padding-left: 10px;
 }
 .input-group {
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
@@ -116,7 +114,7 @@ padding: 8px 12px !important;
  	margin: 0 auto;
  	max-width: 400px;
     padding: 10px 40px;
-	background:#009edf;
+	background: #87CEEB;
 	    color: #FFF;
     text-shadow: none;
 	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
@@ -135,7 +133,9 @@ span.input-group-addon i {
 
 .login-register{
 	font-size: 11px;
-	text-align: center;
+
+	font-family: "Comic Sans MS", cursive, sans-serif;
+		text-align: center;
 }
 </style>
 <!DOCTYPE html>
@@ -187,7 +187,7 @@ span.input-group-addon i {
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+									<input "type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
 								</div>
 							</div>
 						</div>
@@ -223,7 +223,9 @@ span.input-group-addon i {
 						</div>
 
 						<div class="form-group ">
-							<a target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a>
+							<div class="col-lg-12 text-center"> 
+							    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Register</button> 
+							</div>
 						</div>
 						 
 					</form>
