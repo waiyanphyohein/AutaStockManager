@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   console.log(req.body);
   Users.create({
-    lastName: req.body.lastName,
     firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     password: req.body.password,
   }).then((user) => {
@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
       res.redirect('/profile')
     );
   }).catch(() => {
-    res.render('signup');
+    res.render('/signup');
   });
 });
 
