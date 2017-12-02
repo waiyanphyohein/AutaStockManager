@@ -20,5 +20,5 @@ A program that will help users with their trading of online stocks while profiti
 
 
 ## Credit:
-Nhi Tran(nhitran27@gmail.com)
+Nhi Tran(nhitran27@gmail.com)</br>
 Ken Zou (kenzou1944@gmail.com)
