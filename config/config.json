@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "your db_username",
-    "password": "your db_password",
-    "database": "your dbname",
+    "username": "ken",
+    "password": "414268977ken",
+    "database": "ctp",
     "host": "localhost",
     "dialect": "mysql"
   }
