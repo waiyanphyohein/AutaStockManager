@@ -108,71 +108,6 @@ app.post('/file-upload/:year/:month',
   });
 });
 
-// app.get('/cookie', function(req, res){
-//   res.cookie('username', 'Derek Banas', {expire: new Date() + 9999}).send('username has the value of Derek Banas');
-// });
-
-// app.get('/listcookies', function(req, res){
-//   console.log("Cookies : ", req.cookies);
-//   res.send('Look in the console for cookies');
-// });
-
-// app.get('/deletecookie', function(req, res){
-//   res.clearCookie('username');
-//   res.send('username Cookie Deleted');
-// });
-
-// var session = require('express-session');
-
-// var parseurl = require('parseurl');
-
-// app.use(function(req, res, next){
-//   var views = req.session.views;
-
-//   if(!views){
-//     views = req.session.views = {};
-//   }
-
-//   var pathname = parseurl(req).pathname;
-
-//   views[pathname] = (views[pathname] || 0) + 1;
-
-//   next();
-
-// });
-
-// app.get('/viewcount', function(req, res, next){
-//   res.send('You viewed this page ' + req.session.views['/viewcount'] + ' times');
-// });
-
-// var fs = require("fs");
-
-// app.get('/readfile', function(req, res, next){
-//   fs.readFile('./public/randomfile.txt', function(err, data){
-//       if(err){
-//         return console.error(err);
-//       }
-//       res.send("the File : " + data.toString());
-//   });
-// });
-
-// app.get('/writefile', function(req, res, next){
-//   fs.writeFile('./public/randomfile2.txt',
-//     'More random text', function(err){
-//       if(err){
-//         return console.error(err);
-//       }
-//     });
-
-//   fs.readFile('./public/randomfile2.txt', function(err, data){
-//     if(err){
-//       return console.error(err);
-//     }
-//     res.send("The File " + data.toString());
-//   });
-
-// });
-
 app.use(function(req, res){
   res.type('text/html');
   res.status(404);
@@ -186,9 +121,6 @@ app.use(function(err, req, res, next){
 });
 
 
-// app.listen(app.get('port'), function(){
-//   console.log('Express started on http://localhost:' + app.get('port') + ' press Ctrl-C to terminate');
-// });
 models.sequelize.sync({force: false})
 .then(() => {
   app.listen(3000);

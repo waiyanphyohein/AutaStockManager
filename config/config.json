@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "your db_username",
-    "password": "your db_password",
-    "database": "your dbname",
-    "host": "localhost",
+    "username": "root",
+    "password": "waiyan123",
+    "database": "auth-demo",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }

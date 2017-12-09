@@ -5,10 +5,10 @@ var rows;
 router.get('/', (req, res) => {
 var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'Your UserName',
+  user     : 'root',
   
-  password : 'Your Password',
-  database : 'ctp'
+  password : 'waiyan123',
+  database : 'auth-demo'
 });
 connection.connect();
 connection.query('SELECT * from user', function(err, rows, fields) {

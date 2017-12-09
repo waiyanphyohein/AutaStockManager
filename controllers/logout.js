@@ -1,15 +1,8 @@
-const express = require('express');
+const router = require('express').Router();
 
-module.exports = {
-  registerRouter() {
-    const router = express.Router();
-
-    router.post('/', this.logout);
-
-    return router;
-  },
-  logout(req, res) {
+  router.post('/',(req, res)=>{
     req.logout();
     res.redirect('/');
-  },
-};
+  });
+
+module.exports = router;
