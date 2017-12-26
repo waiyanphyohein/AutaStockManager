@@ -1,0 +1,11 @@
+{{#if cur_user}}
+  <script>
+    ;(function() {
+      $('#logout').click(function() {
+        $.post("/logout", function() {
+          window.location.href = '/';
+        });
+      });
+    })();
+  </script>
+  {{/if}}

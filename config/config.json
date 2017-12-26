@@ -1,9 +1,9 @@
 {
   "development": {
-    "username":"ctp_user",
-    "password":"ctp_user",
-    "database": "poll_development",
+    "username": "root",
+    "password": "waiyan123",
+    "database": "auth-demo",
     "host": "127.0.0.1",
-    "dialect": "postgresql"
+    "dialect": "mysql"
   }
 }

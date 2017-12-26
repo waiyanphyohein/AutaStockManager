@@ -1,7 +1,9 @@
-const router = require('express').Router();
+  const router = require('express').Router();
+  const Redirect = require('../middlewares/redirect');
 
-router.get('/', (req, res) => {
-  res.render('profile', { randomPerson: req.user })
-});
 
-module.exports = router;
+  router.get('/',Redirect.ifNotLoggedIn(), (req, res) => {
+    res.render('profile', { user: req.user });
+  });
+
+  module.exports = router;
